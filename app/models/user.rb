@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable
 
+
+        has_many :items
+
   # <<バリデーション>>
   with_options presence: true do
   # with_options:1つの条件を複数のバリデーションで共用できるときに使用する
@@ -21,15 +24,14 @@ class User < ApplicationRecord
   with_options format: { with: /\A[ぁ-んァ-ン一-龥々]+\z/} do
   validates :first_name
   validates :last_name
-  end
+
+end
 
 
-  # 全角のカタカナ以外を使用していないか検証
-  with_options format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/} do
+# 全角のカタカナ以外を使用していないか検証
+with_options format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/} do
   validates :first_name_kana
   validates :last_name_kana
-  end
-
-  end
-
+end
+end
 end
