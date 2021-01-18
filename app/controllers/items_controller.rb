@@ -3,6 +3,9 @@ class ItemsController < ApplicationController
  # deviseのヘルパーメソッド。ログインしていなければ、ログイン画面へ遷移させる。
  # 理由：非会員が出品できてしまうため
 
+ before_action :set_item, only:[ :show , :edit , :update ]　# 追加
+ before_action :move_to_index, only:[ :edit , :update ]　# 追加
+
   def index
     @items = Item.includes(:user).order("created_at DESC")
   end
@@ -27,6 +30,22 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def edit
+    @item = Item.find(params[:id])
+   end
+
+   def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+
+    if @item.valid?
+      redirect_to item_path(@item)
+    else
+      render 'edit'
+    end
+  end
+
+
   private
 
   def item_params
@@ -44,5 +63,13 @@ class ItemsController < ApplicationController
   # ストロングパラメーターの設定も受講生によって名前が異なります。
   # ActiveHashの設定を確認しましょう。
   end
+
+   def set_item 　# 追加　(@itemの定義)
+    @item = Item.find(params[:id])
+    end
+
+    def move_to_index　　# 追加　（@itemと紐づ くユーザーが一致しているか　一致していない場合は、トップページへ）
+      return redirect_to root_path if current_user.id != @item.user.id
+    end
 
 end
