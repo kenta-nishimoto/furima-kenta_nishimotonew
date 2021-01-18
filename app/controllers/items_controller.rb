@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
  # 理由：非会員が出品できてしまうため
 
   def index
-
+    @items = Item.includes(:user).order("created_at DESC")
   end
 
   def new
