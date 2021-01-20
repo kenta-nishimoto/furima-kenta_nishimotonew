@@ -13,6 +13,7 @@ class Item < ApplicationRecord
 
   # <<アソシエーション>>
   belongs_to :user
+  has_one :order
 
   # <<バリデーション>>
   with_options presence: true do
