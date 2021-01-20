@@ -10,7 +10,7 @@ class User < ApplicationRecord
   # <<バリデーション>>
   with_options presence: true do
   # with_options:1つの条件を複数のバリデーションで共用できるときに使用する
-  # 今回だとpresence: true　を全てに付与させます。
+  # 今回だとpresence: trueを全てに付与させます。
   # presence:指定された属性が「空でない」ことを確認
 
   validates :nickname

@@ -11,10 +11,12 @@ window.addEventListener('load', () => {
     const addTaxDom = document.getElementById("add-tax-price");
     // ↪︎販売手数料を表示する場所のidを取得している
 
-    // ====ここからわからない＝＝＝＝
+    addTaxDom.innerHTML = Math.floor(inputValue * 0.1 );
+    // ↪︎手数料計算
 
-    addTaxDom.innerHTML = "入力した金額をもとに販売手数料を計算する処理"
+    const addProfitDom = document.getElementById("profit");
 
+    addProfitDom.innerHTML = Math.floor(inputValue * 0.9 );
 
   })
 });
