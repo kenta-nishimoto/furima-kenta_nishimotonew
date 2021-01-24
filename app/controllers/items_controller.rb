@@ -78,7 +78,7 @@ class ItemsController < ApplicationController
     end
 
     def move_to_index
-      return redirect_to root_path if current_user.id != @item.user.id
+      return redirect_to root_path if current_user.id != @item.user.id || @item.order.present? # 追記
       # リファクタリング② ログインしているユーザーと@itemのユーザーの一致確認
       #                 異なる場合は、トップページへ遷移させる
     end

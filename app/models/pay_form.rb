@@ -4,7 +4,7 @@ class PayForm
   include ActiveModel::Model
   #Active Recordの場合と同様に form_with や render などのヘルパーメソッドが使用できるようになる
 
- attr_accessor  :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :user_id ,:item_id
+ attr_accessor  :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :user_id ,:item_id ,:token #追加
   # フォームオブジェクトで使用する値を定義している（読み書きができるようになっている）
 
    # <<配送先のバリデーション>>
@@ -17,6 +17,7 @@ class PayForm
     validates :phone_number,    length: { maximum: 11 }
     validates :user_id
     validates :item_id 
+    validates :token #追加
    end
 
     def save
