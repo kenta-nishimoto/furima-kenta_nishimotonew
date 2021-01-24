@@ -13,6 +13,7 @@ class Item < ApplicationRecord
 
   # <<アソシエーション>>
   belongs_to :user
+  has_one :order
 
   # <<バリデーション>>
   with_options presence: true do
@@ -24,7 +25,7 @@ class Item < ApplicationRecord
 
   # 金額の範囲
   validates_inclusion_of :price, in: 300..9999999
-  # ..:rubyの範囲オブジェクト　https://docs.ruby-lang.org/ja/latest/class/Range.html
+  # ..:rubyの範囲オブジェクト https://docs.ruby-lang.org/ja/latest/class/Range.html
 
   # numericalityを使うのもあります！
   # validates :price, numericality: { greater_than_or_equal_to: 300, 

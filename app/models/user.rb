@@ -5,7 +5,8 @@ class User < ApplicationRecord
         :recoverable, :rememberable, :validatable
 
 
-        has_many :items
+  has_many :items
+  has_many :orders 
 
   # <<バリデーション>>
   with_options presence: true do
@@ -29,7 +30,7 @@ end
 
 
 # 全角のカタカナ以外を使用していないか検証
-with_options format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/} do
+with_options format: { with: /\A[\p{katakana} ー－&&[^ -~｡-ﾟ]]+\z/} do
   validates :first_name_kana
   validates :last_name_kana
 end
